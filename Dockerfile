@@ -173,6 +173,7 @@ COPY pkg/docker/run_pgadmin.py /pgadmin4
 COPY pkg/docker/gunicorn_config.py /pgadmin4
 COPY pkg/docker/entrypoint.sh /entrypoint.sh
 
+
 # License files
 COPY LICENSE /pgadmin4/LICENSE
 COPY DEPENDENCIES /pgadmin4/DEPENDENCIES
@@ -201,7 +202,9 @@ RUN apk add \
     chmod g=u /etc/passwd && \
     setcap CAP_NET_BIND_SERVICE=+eip /usr/bin/python3.11 && \
     echo "pgadmin ALL = NOPASSWD: /usr/sbin/postfix start" > /etc/sudoers.d/postfix && \
-    echo "pgadminr ALL = NOPASSWD: /usr/sbin/postfix start" >> /etc/sudoers.d/postfix
+    echo "pgadminr ALL = NOPASSWD: /usr/sbin/postfix start" >> /etc/sudoers.d/postfix && \
+    chown pgadmin:root /venv && \
+    chmod g=u /venv
 
 USER pgadmin
 
