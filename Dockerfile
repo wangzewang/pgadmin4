@@ -203,7 +203,7 @@ RUN apk add \
     setcap CAP_NET_BIND_SERVICE=+eip /usr/bin/python3.11 && \
     echo "pgadmin ALL = NOPASSWD: /usr/sbin/postfix start" > /etc/sudoers.d/postfix && \
     echo "pgadminr ALL = NOPASSWD: /usr/sbin/postfix start" >> /etc/sudoers.d/postfix && \
-    chown pgadmin:root /venv && \
+    chown -R pgadmin:root /venv && \
     chmod g=u /venv
 
 USER pgadmin
